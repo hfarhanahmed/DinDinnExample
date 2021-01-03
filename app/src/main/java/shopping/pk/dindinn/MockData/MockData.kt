@@ -20,10 +20,10 @@ class MockData {
             FoodItem("sushi4", "Special Sushi", "Red Sniper, Salmon, rice, magical sauces", "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000370/img/basic/a0000370_main.jpg", "Sushi", 999, "250 gram, 13 pieces")
         )
         val drinks = listOf(
-            FoodItem("drink1", "", "This is very delicious and cheesy pizza.", "", "Drinks", 3, "250 ml"),
-            FoodItem("drink2", "", "This pizza is for cheesy lovers.", "", "Drinks", 5, "250 ml"),
-            FoodItem("drink3", "", "The healthy delight for people who love themselves", "", "Drinks", 4, "350 ml"),
-            FoodItem("drink4", "", "The very special pizza to complement you taste buds.", "", "Drinks", 7, "350 ml")
+            FoodItem("drink1", "Uglu", "The refreshing lemon and lime mix", "https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/09/30/12/ugly.jpg?width=982&height=726", "Drinks", 3, "250 ml"),
+            FoodItem("drink2", "Coke", "The best selling soft drink in whole world", "https://www.coca-cola.co.uk/content/dam/one/gb/en/article-lead/coca-cola-zero-sugar-diet-coke-article-lead-desktop-1020x420.jpg", "Drinks", 5, "250 ml"),
+            FoodItem("drink3", "Smoothy", "A fruity and healthy drink", "https://www.thoughtco.com/thmb/JTvtua956kgKeIv4F-VtVfpPf-c=/1271x1271/smart/filters:no_upscale()/juice-2594602_1920-61c1b762c9e4492d82d1f7374381af11.jpg", "Drinks", 4, "350 ml"),
+            FoodItem("drink4", "Cocktail", "The cocktail of best fruits", "https://www.readitforward.com/wp-content/uploads/2017/11/10-Singapore-Sling_cropped.jpg", "Drinks", 7, "350 ml")
         )
 
         fun getMockFoodList(categoryId: String):List<FoodItem>{

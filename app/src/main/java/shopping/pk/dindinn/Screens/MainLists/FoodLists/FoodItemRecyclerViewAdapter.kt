@@ -23,7 +23,7 @@ class FoodItemRecyclerViewAdapter(private val values: List<FoodItem>, val addToC
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        Glide.with(holder.itemView).load(item.imageUrl).into(holder.imageView)
+        Glide.with(holder.itemView).load(item.imageUrl).fitCenter().into(holder.imageView)
         holder.name.text = item.name
         holder.contentView.text = item.description
         holder.weightSize.text = item.weightSize
@@ -31,8 +31,10 @@ class FoodItemRecyclerViewAdapter(private val values: List<FoodItem>, val addToC
 
         holder.addToCart.setOnTouchListener { v, event ->
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                holder.addToCart.text =   "added +1"
+                holder.addToCart.text =   "added + 1"
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                holder.addToCart.text =   "${item.price} usd"
+            } else if (event.getAction() == MotionEvent.ACTION_CANCEL) {
                 holder.addToCart.text =   "${item.price} usd"
             }
             false

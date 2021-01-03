@@ -23,7 +23,7 @@ class CheckoutItemRecyclerViewAdapter(private val values: List<FoodItem>, val re
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        Glide.with(holder.itemView).load(item.imageUrl).into(holder.imageView)
+        Glide.with(holder.itemView).load(item.imageUrl).fitCenter().into(holder.imageView)
         holder.name.text = item.name
         holder.price.text = "${item.price} usd"
 

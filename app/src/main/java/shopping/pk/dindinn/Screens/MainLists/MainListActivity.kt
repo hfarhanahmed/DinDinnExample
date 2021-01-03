@@ -5,6 +5,7 @@ import SliderAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
@@ -38,9 +39,13 @@ class MainListActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
         findViewById<FloatingActionButton>(R.id.checkoutFab).setOnClickListener { view ->
-            val intent = Intent(this, CheckoutActivity::class.java)
-            intent.putExtra(CheckoutActivity.EXTRA_CHECKOUT_ITEMS,cartItems)
-            startActivity(intent)
+            if (cartItems.size>0){
+                val intent = Intent(this, CheckoutActivity::class.java)
+                intent.putExtra(CheckoutActivity.EXTRA_CHECKOUT_ITEMS,cartItems)
+                startActivity(intent)
+            }else{
+                Toast.makeText(this, "Nothing is added to cart", Toast.LENGTH_SHORT).show()
+            }
         }
         nestedScroll.isFillViewport = true
         val sliderAdapter = SliderAdapter(this)
@@ -49,14 +54,18 @@ class MainListActivity : AppCompatActivity() {
         sliderAdapter.addItem(R.drawable.slide3)
         imageSlider.setSliderAdapter(sliderAdapter)
 
+        imageSlider.startAutoCycle()
+
         foodListTabs.setupWithViewPager(foodListsViewpager)
         foodListsViewpager.adapter = MainListsPagerAdapter(supportFragmentManager)
 
         app_bar.addOnOffsetChangedListener(OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if ((toolbar_layout.height + verticalOffset) < (2 * ViewCompat.getMinimumHeight(toolbar_layout))){
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                fabLayout.visibility = View.VISIBLE
             }else{
                 window.decorView.systemUiVisibility = 0
+                fabLayout.visibility = View.GONE
             }
         })
 
