@@ -22,7 +22,7 @@ import shopping.pk.dindinn.R
 import shopping.pk.dindinn.Screens.Checkout.CheckoutActivity
 
 
-class ScrollingActivity : AppCompatActivity() {
+class MainListActivity : AppCompatActivity() {
 
     private val cartItems = arrayListOf<FoodItem>()
 
