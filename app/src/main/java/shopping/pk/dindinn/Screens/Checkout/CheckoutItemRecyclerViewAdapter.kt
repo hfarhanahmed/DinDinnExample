@@ -17,7 +17,7 @@ class CheckoutItemRecyclerViewAdapter(private val values: List<FoodItem>, val re
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_food_item_list, parent, false)
+            .inflate(R.layout.fragment_checkout_item_list, parent, false)
         return ViewHolder(view)
     }
 
@@ -25,21 +25,10 @@ class CheckoutItemRecyclerViewAdapter(private val values: List<FoodItem>, val re
         val item = values[position]
         Glide.with(holder.itemView).load(item.imageUrl).into(holder.imageView)
         holder.name.text = item.name
-        holder.contentView.text = item.description
-        holder.weightSize.text = item.weightSize
-        holder.addToCart.text =   "${item.price} USD"
+        holder.price.text = "${item.price} usd"
 
-        holder.addToCart.setOnTouchListener { v, event ->
-            if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                holder.addToCart.text =   "added +1"
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                holder.addToCart.text =   "${item.price} USD"
-            }
-            false
-        }
-
-        holder.addToCart.setOnClickListener {
-            addToCart.invoke(item)
+        holder.removeItem.setOnClickListener {
+            removeFromCart.invoke(item)
         }
 
     }
@@ -49,12 +38,11 @@ class CheckoutItemRecyclerViewAdapter(private val values: List<FoodItem>, val re
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.image)
         val name: TextView = view.findViewById(R.id.name)
-        val contentView: TextView = view.findViewById(R.id.content)
-        val weightSize: TextView = view.findViewById(R.id.weightSize)
-        val addToCart: Button = view.findViewById(R.id.addToCart)
+        val price: TextView = view.findViewById(R.id.price)
+        val removeItem: TextView = view.findViewById(R.id.removeItem)
 
         override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+            return super.toString() + " '" + name.text + "'"
         }
     }
 }

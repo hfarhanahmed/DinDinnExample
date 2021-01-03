@@ -27,13 +27,13 @@ class FoodItemRecyclerViewAdapter(private val values: List<FoodItem>, val addToC
         holder.name.text = item.name
         holder.contentView.text = item.description
         holder.weightSize.text = item.weightSize
-        holder.addToCart.text =   "${item.price} USD"
+        holder.addToCart.text =   "${item.price} usd"
 
         holder.addToCart.setOnTouchListener { v, event ->
             if(event.getAction() == MotionEvent.ACTION_DOWN) {
                 holder.addToCart.text =   "added +1"
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                holder.addToCart.text =   "${item.price} USD"
+                holder.addToCart.text =   "${item.price} usd"
             }
             false
         }

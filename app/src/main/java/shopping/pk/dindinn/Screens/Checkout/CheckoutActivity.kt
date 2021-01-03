@@ -7,9 +7,14 @@ import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_checkout.*
+import shopping.pk.dindinn.Models.FoodItem
 import shopping.pk.dindinn.R
 
 class CheckoutActivity : AppCompatActivity() {
+
+    companion object {
+        val EXTRA_CHECKOUT_ITEMS = "EXTRA_CHECKOUT_ITEMS"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +22,8 @@ class CheckoutActivity : AppCompatActivity() {
         val sectionsPagerAdapter =
             SectionsPagerAdapter(
                 this,
-                supportFragmentManager
+                supportFragmentManager,
+                intent.getSerializableExtra(EXTRA_CHECKOUT_ITEMS) as ArrayList<FoodItem>
             )
         val viewPager: ViewPager = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter

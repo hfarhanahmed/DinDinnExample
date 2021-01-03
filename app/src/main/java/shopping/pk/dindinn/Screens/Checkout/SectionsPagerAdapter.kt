@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import shopping.pk.dindinn.Models.FoodItem
 import shopping.pk.dindinn.R
 
 private val TAB_TITLES = arrayOf(
@@ -16,13 +17,16 @@ private val TAB_TITLES = arrayOf(
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
+class SectionsPagerAdapter(private val context: Context, fm: FragmentManager, val checkoutItems: ArrayList<FoodItem>) :
     FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return CheckoutListFragment.newInstance(position + 1)
+        return when(position){
+            0 -> CheckoutListFragment.newInstance(checkoutItems)
+            else -> OthersFragment.newInstance("","")
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

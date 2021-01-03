@@ -38,7 +38,9 @@ class ScrollingActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
         findViewById<FloatingActionButton>(R.id.checkoutFab).setOnClickListener { view ->
-            startActivity(Intent(this, CheckoutActivity::class.java))
+            val intent = Intent(this, CheckoutActivity::class.java)
+            intent.putExtra(CheckoutActivity.EXTRA_CHECKOUT_ITEMS,cartItems)
+            startActivity(intent)
         }
         nestedScroll.isFillViewport = true
         val sliderAdapter = SliderAdapter(this)
