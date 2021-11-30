@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sevenpeakssoftware.farhan">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -12,10 +15,11 @@
 
         <activity
             android:name=".ui.component.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"/>
         <activity
             android:name=".ui.component.splash.SplashActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

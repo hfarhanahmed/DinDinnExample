@@ -8,7 +8,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.2"
+        classpath 'com.android.tools.build:gradle:7.0.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
@@ -49,7 +49,8 @@ ext {
     materialVersion= '1.4.0'
     activityKtxVersion= '1.4.0'
     retrofitVersion = '2.9.0'
-    moshiVersion = '1.11.0'
+    moshiVersion = '1.12.0'
+//    moshiVersion = '1.11.0'
     okhttpInterceptorVersion = '4.9.0'
     mockVersion = '1.10.5'
     annotationVersion ='1.1.0'
