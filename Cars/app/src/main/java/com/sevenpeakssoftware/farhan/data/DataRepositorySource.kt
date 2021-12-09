@@ -1,8 +1,7 @@
 package com.sevenpeakssoftware.farhan.data
 
-import com.sevenpeakssoftware.farhan.data.dto.recipes.Recipes
-import com.sevenpeakssoftware.farhan.data.dto.login.LoginRequest
-import com.sevenpeakssoftware.farhan.data.dto.login.LoginResponse
+import com.sevenpeakssoftware.farhan.data.dto.articles.Article
+import com.sevenpeakssoftware.farhan.data.dto.articles.Articles
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -10,9 +9,7 @@ import kotlinx.coroutines.flow.Flow
  */
 
 interface DataRepositorySource {
-    suspend fun requestRecipes(): Flow<Resource<Recipes>>
-    suspend fun doLogin(loginRequest: LoginRequest): Flow<Resource<LoginResponse>>
-    suspend fun addToFavourite(id: String): Flow<Resource<Boolean>>
-    suspend fun removeFromFavourite(id: String): Flow<Resource<Boolean>>
-    suspend fun isFavourite(id: String): Flow<Resource<Boolean>>
+    suspend fun requestArticles(): Flow<Resource<Articles>>
+    suspend fun requestLocalArticles(): Flow<Resource<List<Article>>>
+    suspend fun insertLocalArticles(articles: List<Article>): Flow<Resource<List<Long>>>
 }

@@ -1,9 +1,9 @@
 package com.sevenpeakssoftware.farhan.data
 
-import com.sevenpeakssoftware.farhan.data.dto.login.LoginRequest
-import com.sevenpeakssoftware.farhan.data.dto.login.LoginResponse
-import com.sevenpeakssoftware.farhan.data.dto.recipes.Recipes
-import com.sevenpeakssoftware.farhan.data.local.LocalData
+
+import com.sevenpeakssoftware.farhan.data.dto.articles.Article
+import com.sevenpeakssoftware.farhan.data.dto.articles.Articles
+import com.sevenpeakssoftware.farhan.data.localDb.LocalData
 import com.sevenpeakssoftware.farhan.data.remote.RemoteData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,45 +18,21 @@ import kotlin.coroutines.CoroutineContext
 
 class DataRepository @Inject constructor(private val remoteRepository: RemoteData, private val localRepository: LocalData, private val ioDispatcher: CoroutineContext) : DataRepositorySource {
 
-    override suspend fun requestRecipes(): Flow<Resource<Recipes>> {
+    override suspend fun requestArticles(): Flow<Resource<Articles>> {
         return flow {
-            emit(remoteRepository.requestRecipes())
+            emit(remoteRepository.requestArticles())
         }.flowOn(ioDispatcher)
     }
 
-    override suspend fun doLogin(loginRequest: LoginRequest): Flow<Resource<LoginResponse>> {
+    override suspend fun requestLocalArticles(): Flow<Resource<List<Article>>> {
         return flow {
-            emit(localRepository.doLogin(loginRequest))
+            emit(localRepository.requestLocalArticles())
         }.flowOn(ioDispatcher)
     }
 
-    override suspend fun addToFavourite(id: String): Flow<Resource<Boolean>> {
+    override suspend fun insertLocalArticles(articles: List<Article>): Flow<Resource<List<Long>>>{
         return flow {
-            localRepository.getCachedFavourites().let {
-                it.data?.toMutableSet()?.let { set ->
-                    val isAdded = set.add(id)
-                    if (isAdded) {
-                        emit(localRepository.cacheFavourites(set))
-                    } else {
-                        emit(Resource.Success(false))
-                    }
-                }
-                it.errorCode?.let { errorCode ->
-                    emit(Resource.DataError<Boolean>(errorCode))
-                }
-            }
-        }.flowOn(ioDispatcher)
-    }
-
-    override suspend fun removeFromFavourite(id: String): Flow<Resource<Boolean>> {
-        return flow {
-            emit(localRepository.removeFromFavourites(id))
-        }.flowOn(ioDispatcher)
-    }
-
-    override suspend fun isFavourite(id: String): Flow<Resource<Boolean>> {
-        return flow {
-            emit(localRepository.isFavourite(id))
+            emit(localRepository.insertLocalArticles(articles))
         }.flowOn(ioDispatcher)
     }
 }

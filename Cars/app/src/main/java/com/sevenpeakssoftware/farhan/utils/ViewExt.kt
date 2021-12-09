@@ -122,7 +122,7 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
 }
 
 fun ImageView.loadImage(@DrawableRes resId: Int) = Picasso.get().load(resId).into(this)
-fun ImageView.loadImage(url: String) = Picasso.get().load(url).placeholder(R.drawable.ic_healthy_food).error(R.drawable.ic_healthy_food).into(this)
+fun ImageView.loadImage(url: String) = Picasso.get().load(url).placeholder(R.drawable.ic_car_large).error(R.drawable.ic_car_large).into(this)
 
 fun AppCompatTextView.setTextFutureExt(text: String) =
         setTextFuture(

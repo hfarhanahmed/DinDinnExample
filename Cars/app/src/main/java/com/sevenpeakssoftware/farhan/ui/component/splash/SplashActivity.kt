@@ -3,11 +3,10 @@ package com.sevenpeakssoftware.farhan.ui.component.splash
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.activity.viewModels
 import com.sevenpeakssoftware.farhan.databinding.SplashLayoutBinding
 import com.sevenpeakssoftware.farhan.ui.base.BaseActivity
-import com.sevenpeakssoftware.farhan.ui.component.login.LoginActivity
 import com.sevenpeakssoftware.farhan.SPLASH_DELAY
+import com.sevenpeakssoftware.farhan.ui.component.articles.ArticlesListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -34,7 +33,7 @@ class SplashActivity : BaseActivity(){
 
     private fun navigateToMainScreen() {
         Handler().postDelayed({
-            val nextScreenIntent = Intent(this, LoginActivity::class.java)
+            val nextScreenIntent = Intent(this, ArticlesListActivity::class.java)
             startActivity(nextScreenIntent)
             finish()
         }, SPLASH_DELAY.toLong())

@@ -6,4 +6,5 @@
     android:layout_height="match_parent"
     android:contentDescription="@null"
     android:scaleType="centerInside"
-    app:srcCompat="@drawable/ic_healthy_food" />
+    android:background="@android:color/black"
+    app:srcCompat="@drawable/ic_car_large" />

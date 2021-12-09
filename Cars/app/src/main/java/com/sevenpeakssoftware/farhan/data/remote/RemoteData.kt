@@ -1,11 +1,12 @@
 package com.sevenpeakssoftware.farhan.data.remote
 
 import com.sevenpeakssoftware.farhan.data.Resource
-import com.sevenpeakssoftware.farhan.data.dto.recipes.Recipes
-import com.sevenpeakssoftware.farhan.data.dto.recipes.RecipesItem
+import com.sevenpeakssoftware.farhan.data.dto.articles.Articles
+import com.sevenpeakssoftware.farhan.data.dto.articles.ArticlesItem
+import com.sevenpeakssoftware.farhan.data.dto.articles.ArticlesResponse
 import com.sevenpeakssoftware.farhan.data.error.NETWORK_ERROR
 import com.sevenpeakssoftware.farhan.data.error.NO_INTERNET_CONNECTION
-import com.sevenpeakssoftware.farhan.data.remote.service.RecipesService
+import com.sevenpeakssoftware.farhan.data.remote.service.ArticlesService
 import com.sevenpeakssoftware.farhan.utils.NetworkConnectivity
 import retrofit2.Response
 import java.io.IOException
@@ -13,16 +14,16 @@ import javax.inject.Inject
 
 
 /**
- * Created by AhmedEltaher
+ * Created by FarhanAhmed
  */
 
 class RemoteData @Inject
 constructor(private val serviceGenerator: ServiceGenerator, private val networkConnectivity: NetworkConnectivity) : RemoteDataSource {
-    override suspend fun requestRecipes(): Resource<Recipes> {
-        val recipesService = serviceGenerator.createService(RecipesService::class.java)
+    override suspend fun requestArticles(): Resource<Articles> {
+        val recipesService = serviceGenerator.createService(ArticlesService::class.java)
         return when (val response = processCall(recipesService::fetchRecipes)) {
-            is List<*> -> {
-                Resource.Success(data = Recipes(response as ArrayList<RecipesItem>))
+            is ArticlesResponse -> {
+                Resource.Success(data = Articles(response.content as ArrayList<ArticlesItem>))
             }
             else -> {
                 Resource.DataError(errorCode = response as Int)

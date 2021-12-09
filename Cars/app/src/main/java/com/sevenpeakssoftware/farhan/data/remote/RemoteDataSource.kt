@@ -1,12 +1,12 @@
 package com.sevenpeakssoftware.farhan.data.remote
 
 import com.sevenpeakssoftware.farhan.data.Resource
-import com.sevenpeakssoftware.farhan.data.dto.recipes.Recipes
+import com.sevenpeakssoftware.farhan.data.dto.articles.Articles
 
 /**
- * Created by AhmedEltaher
+ * Created by FarhanAhmed
  */
 
 internal interface RemoteDataSource {
-    suspend fun requestRecipes(): Resource<Recipes>
+    suspend fun requestArticles(): Resource<Articles>
 }

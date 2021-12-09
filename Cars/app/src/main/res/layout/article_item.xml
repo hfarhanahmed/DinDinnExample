@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_recipe_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/space_1x">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/space_24x"
+        android:background="@android:color/black">
+
+        <ImageView
+            android:id="@+id/iv_recipe_item_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_view_height"
+            android:background="@color/image_background"
+            android:layout_marginBottom="@dimen/space_48x"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_car_large" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/iv_recipe_item_image_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/background_article_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/space_16x"
+                android:layout_marginEnd="@dimen/space_24x"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/font_20x"
+                    tools:text="Q7 - Greatness starts, when you don't stop." />
+
+                <TextView
+                    android:id="@+id/tv_datetime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8x"
+                    android:maxLines="1"
+                    android:textSize="@dimen/font_14x"
+                    android:textColor="@color/text_grey"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="29 November 2017, 15:13" />
+
+                <TextView
+                    android:id="@+id/tv_ingress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12x"
+                    android:maxLines="2"
+                    android:textColor="@color/text"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_name"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="@dimen/font_14x"
+                    tools:text="The Audi Q7 is the result of an ambitious idea: never cease to improve." />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,8 +1,7 @@
 package com.sevenpeakssoftware.farhan.di
 
 import android.content.Context
-import com.sevenpeakssoftware.farhan.App
-import com.sevenpeakssoftware.farhan.data.local.LocalData
+import com.sevenpeakssoftware.farhan.data.localDb.AppDatabase
 import com.sevenpeakssoftware.farhan.utils.Network
 import com.sevenpeakssoftware.farhan.utils.NetworkConnectivity
 import dagger.Module
@@ -19,8 +18,8 @@ import kotlin.coroutines.CoroutineContext
 class AppModule {
     @Provides
     @Singleton
-    fun provideLocalRepository(@ApplicationContext context: Context): LocalData {
-        return LocalData(context)
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return AppDatabase.getInstance(context)
     }
 
     @Provides
